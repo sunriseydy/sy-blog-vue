@@ -7,7 +7,6 @@
     >
       <article-archive />
     </v-col>
-
     <v-col
         cols="1"
         sm="2"
@@ -18,11 +17,11 @@
 </template>
 
 <script>
-import ArticleArchive from "@/components/ArticleArchive";
-import SideBar from "@/components/SideBar";
+import ArticleArchive from '@/components/ArticleArchive';
+import SideBar from '@/components/SideBar';
 export default {
-  name: 'BlogHome',
-  components: {SideBar, ArticleArchive}
+  name: 'BlogDateArchive',
+  components: {SideBar, ArticleArchive},
 }
 </script>
 
