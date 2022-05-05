@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "roboto-fontface": "*",
     "vue": "^2.6.14",
+    "vue-axios": "^3.4.1",
     "vue-router": "^3.5.3",
-    "vuetify": "^2.6.0"
+    "vuetify": "^2.6.0",
+    "vuetify-dialog": "^2.0.17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
