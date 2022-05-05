@@ -9,7 +9,7 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
 
-new Vue({
+export default new Vue({
   vuetify,
   router,
   render: h => h(App)
