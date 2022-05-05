@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import BlogHome from "@/views/BlogHome";
-import BlogArticle from "@/views/BlogArticle";
-import BlogCategory from '@/views/BlogCategory';
-import BlogDateArchive from '@/views/BlogDateArchive';
-import BlogTag from '@/views/BlogTag';
-import BlogUser from '@/views/BlogUser';
-import BlogPage from '@/views/BlogPage';
+import BlogHome from "@/pages/BlogHome";
+import BlogArticle from "@/pages/BlogArticle";
+import BlogCategory from '@/pages/BlogCategory';
+import BlogDateArchive from '@/pages/BlogDateArchive';
+import BlogTag from '@/pages/BlogTag';
+import BlogUser from '@/pages/BlogUser';
+import BlogPage from '@/pages/BlogPage';
 
 Vue.use(Router)
 
