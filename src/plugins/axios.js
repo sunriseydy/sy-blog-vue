@@ -2,9 +2,11 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import config from '@/config';
-import vm from '@/main';
 
 axios.defaults.baseURL = config.apiHost;
+
+let vm = {};
+
 // 注册全局的http返回拦截器
 // 全局异常处理
 axios.interceptors.response.use(response => {
@@ -44,3 +46,9 @@ axios.interceptors.response.use(response => {
 }));
 
 Vue.use(VueAxios, axios);
+
+export default {
+  setVm(vue) {
+    vm = vue;
+  }
+}
