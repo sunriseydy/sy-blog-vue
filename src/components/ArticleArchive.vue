@@ -14,6 +14,7 @@
               rounded="lg"
               class="grey"
               elevation="12"
+              :to="{ name: 'articleId', params: { id: post.id }}"
               :class="`darken-${hover ? 3 : 4}`"
           >
             <v-card-title v-text="post.titleString" />

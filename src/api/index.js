@@ -9,6 +9,10 @@ export default {
     }));
   },
 
+  async getPostById(id) {
+    return vm.$http.get(`/post/${id}`);
+  },
+
   setVm(vue) {
     vm = vue;
   },

@@ -1,19 +1,16 @@
 <template>
   <v-row>
     <v-col
-        cols="1"
         sm="2"
     >
       <content-catalog />
     </v-col>
     <v-col
-        cols="1"
         sm="8"
     >
       <article-detail />
     </v-col>
     <v-col
-        cols="1"
         sm="2"
     >
       <side-bar />
