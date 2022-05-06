@@ -34,6 +34,7 @@
     </v-col>
     <v-col
         offset="5"
+        v-if="posts.length !== 0"
     >
       <v-btn
           small
@@ -71,6 +72,7 @@ export default {
           position: 'bottom-right',
           timeout: 3000,
         });
+        this.nextPageBtnDisable = false;
         return;
       }
       api.getPosts({
