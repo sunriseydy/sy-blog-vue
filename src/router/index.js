@@ -19,49 +19,41 @@ const routes = [
   {
     path: '/article/:id(\\d+)',
     name: 'articleId',
-    props: true,
     component: BlogArticle
   },
   {
     path: '/article/:slug+',
     name: 'articleSlug',
-    props: true,
     component: BlogArticle
   },
   {
     path: '/category/:slug',
     name: 'categorySlug',
-    props: true,
     component: BlogCategory
   },
   {
     path: '/archive/:year(\\d+)',
     name: 'dateArchiveYear',
-    props: true,
     component: BlogDateArchive
   },
   {
     path: '/archive/:year(\\d+)/:month(\\d+)',
     name: 'dateArchiveMonth',
-    props: true,
     component: BlogDateArchive
   },
   {
     path: '/tag/:slug',
     name: 'tagSlug',
-    props: true,
     component: BlogTag
   },
   {
     path: '/user/:slug',
     name: 'userSlug',
-    props: true,
     component: BlogUser
   },
   {
     path: '/:slug',
     name: 'pageSlug',
-    props: true,
     component: BlogPage
   },
 ]
