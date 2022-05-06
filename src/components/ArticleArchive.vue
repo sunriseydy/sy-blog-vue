@@ -1,10 +1,50 @@
 <template>
-  <v-sheet
-      min-height="200vh"
-      rounded="lg"
+  <v-row
+      align-content="center"
   >
-    <!--  -->
-  </v-sheet>
+    <v-col
+        v-for="post in posts"
+        :key="post.id"
+        cols="12"
+    >
+      <v-hover>
+        <template v-slot:default="{ hover }">
+          <v-card
+              outlined
+              rounded="lg"
+              class="grey"
+              elevation="12"
+              :class="`darken-${hover ? 3 : 4}`"
+          >
+            <v-card-title v-text="post.titleString" />
+            <v-img
+                v-if="post.featuredMediaUrl"
+                :src="post.featuredMediaUrl"
+                height="400px"
+                class="ma-4"
+            >
+            </v-img>
+            <v-card-text>
+              {{ post.excerptString }}
+            </v-card-text>
+          </v-card>
+        </template>
+      </v-hover>
+
+    </v-col>
+    <v-col
+        offset="5"
+    >
+      <v-btn
+          small
+          fab
+          :disabled="nextPageBtnDisable"
+          @click="getNextPagePosts"
+      >
+        <v-icon>mdi-chevron-down</v-icon>
+      </v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -17,12 +57,14 @@ export default {
     pageSize: 10,
     totalPages: 1,
     posts: [],
+    nextPageBtnDisable: false,
   }),
   mounted() {
     this.getPosts();
   },
   methods: {
     getPosts(page = 0) {
+      this.nextPageBtnDisable = true;
       // 获取文章
       if (page === this.totalPages) {
         this.$dialog.notify.info('已经最后一页了', {
@@ -39,7 +81,11 @@ export default {
         this.page = page;
         this.pageSize = pageSize;
         this.totalPages = totalPages;
-        this.posts = content;
+        for (let post of content) {
+          this.posts.push(post);
+        }
+      }).finally(() => {
+        this.nextPageBtnDisable = false;
       });
     },
     getNextPagePosts() {

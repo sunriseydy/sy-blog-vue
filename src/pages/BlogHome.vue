@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col
-        cols="1"
+        cols="auto"
         sm="8"
         offset-sm="2"
     >
@@ -9,7 +9,7 @@
     </v-col>
 
     <v-col
-        cols="1"
+        cols="auto"
         sm="2"
     >
       <side-bar />
