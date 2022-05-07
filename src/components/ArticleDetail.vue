@@ -14,16 +14,18 @@
     <v-card-title v-text="post.titleString" />
 
     <v-card-text>
-      {{ post.contentString }}
+      <mark-down :content="post.contentString" />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
 import api from '@/api';
+import MarkDown from '@/components/MarkDown';
 
 export default {
   name: 'ArticleDetail',
+  components: {MarkDown},
   data: () => ({
     post: {},
     postId: undefined,

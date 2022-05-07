@@ -26,7 +26,7 @@
             >
             </v-img>
             <v-card-text>
-              {{ post.excerptString }}
+              <mark-down :content="post.excerptString" />
             </v-card-text>
           </v-card>
         </template>
@@ -51,9 +51,11 @@
 
 <script>
 import api from '@/api';
+import MarkDown from '@/components/MarkDown';
 
 export default {
   name: 'ArticleArchive',
+  components: {MarkDown},
   data: () => ({
     page: 0,
     pageSize: 10,
