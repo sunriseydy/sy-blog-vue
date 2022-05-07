@@ -13,7 +13,6 @@
         <v-img
             v-if="post.featuredMediaUrl"
             :src="post.featuredMediaUrl"
-            class="ma-4"
         >
         </v-img>
       </v-card>
