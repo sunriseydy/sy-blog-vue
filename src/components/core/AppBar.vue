@@ -2,6 +2,7 @@
   <v-app-bar
       app
       flat
+      absolute
   >
     <v-tabs
         centered

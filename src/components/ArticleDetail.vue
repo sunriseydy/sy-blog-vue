@@ -2,7 +2,22 @@
   <v-row>
     <v-col
         cols="12"
-        v-if="post.featuredMediaUrl"
+        id="title-col"
+    >
+      <v-card
+          outlined
+          rounded="lg"
+          class="grey darken-4"
+          elevation="12"
+      >
+        <v-card-title
+            v-text="post.titleString"
+            class="text-h3"
+        />
+      </v-card>
+    </v-col>
+    <v-col
+        cols="12"
     >
       <v-card
           outlined
@@ -15,21 +30,6 @@
             :src="post.featuredMediaUrl"
         >
         </v-img>
-      </v-card>
-    </v-col>
-    <v-col
-        cols="12"
-    >
-      <v-card
-          outlined
-          rounded="lg"
-          class="grey darken-4"
-          elevation="12"
-      >
-        <v-card-title
-            v-text="post.titleString"
-            class="text-h3"
-        />
       </v-card>
     </v-col>
     <v-col
@@ -84,5 +84,9 @@ export default {
 </script>
 
 <style scoped>
-
+#title-col {
+  position: sticky;
+  top: -12px;
+  z-index: 1;
+}
 </style>
