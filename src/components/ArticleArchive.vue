@@ -23,6 +23,7 @@
                 :src="post.featuredMediaUrl"
                 height="400px"
                 class="ma-4"
+                contain
             >
             </v-img>
             <v-card-text>
