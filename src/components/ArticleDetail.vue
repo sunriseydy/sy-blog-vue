@@ -1,22 +1,53 @@
 <template>
-  <v-card
-      outlined
-      rounded="lg"
-      class="grey darken-4"
-      elevation="12"
-  >
-    <v-img
+  <v-row>
+    <v-col
+        cols="12"
         v-if="post.featuredMediaUrl"
-        :src="post.featuredMediaUrl"
-        class="ma-4"
     >
-    </v-img>
-    <v-card-title v-text="post.titleString" class="text-h3" />
-
-    <v-card-text>
-      <mark-down :content="post.contentString" />
-    </v-card-text>
-  </v-card>
+      <v-card
+          outlined
+          rounded="lg"
+          class="grey darken-4"
+          elevation="12"
+      >
+        <v-img
+            v-if="post.featuredMediaUrl"
+            :src="post.featuredMediaUrl"
+            class="ma-4"
+        >
+        </v-img>
+      </v-card>
+    </v-col>
+    <v-col
+        cols="12"
+    >
+      <v-card
+          outlined
+          rounded="lg"
+          class="grey darken-4"
+          elevation="12"
+      >
+        <v-card-title
+            v-text="post.titleString"
+            class="text-h3"
+        />
+      </v-card>
+    </v-col>
+    <v-col
+        cols="12"
+    >
+      <v-card
+          outlined
+          rounded="lg"
+          class="grey darken-4"
+          elevation="12"
+      >
+        <v-card-text>
+          <mark-down :content="post.contentString" />
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -32,7 +63,7 @@ export default {
   }),
   mounted() {
     // 设置文章ID
-    this.postId = this.$route.params.id
+    this.postId = this.$route.params.id;
     this.getPostById();
   },
   methods: {
