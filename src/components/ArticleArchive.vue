@@ -1,6 +1,7 @@
 <template>
   <v-row
-      align-content="center"
+      justify="center"
+      align="center"
   >
     <v-col
         v-for="post in posts"
@@ -35,7 +36,7 @@
 
     </v-col>
     <v-col
-        offset="5"
+        cols="1"
         v-if="posts.length !== 0"
     >
       <v-btn
