@@ -17,7 +17,7 @@
               :to="{ name: 'articleId', params: { id: post.id }}"
               :class="`darken-${hover ? 3 : 4}`"
           >
-            <v-card-title v-text="post.titleString" />
+            <v-card-title v-text="post.titleString" class="text-h3" />
             <v-img
                 v-if="post.featuredMediaUrl"
                 :src="post.featuredMediaUrl"

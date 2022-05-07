@@ -11,7 +11,7 @@
         class="ma-4"
     >
     </v-img>
-    <v-card-title v-text="post.titleString" />
+    <v-card-title v-text="post.titleString" class="text-h3" />
 
     <v-card-text>
       <mark-down :content="post.contentString" />
