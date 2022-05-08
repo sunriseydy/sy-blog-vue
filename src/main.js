@@ -5,6 +5,8 @@ import router from '@/router';
 import '@/plugins/vuetify-dialog';
 import axios from '@/plugins/axios';
 import api from '@/api';
+import store from '@/store';
+
 // import 'roboto-fontface/css/roboto/roboto-fontface.css';
 // icon 包
 import '@mdi/font/css/materialdesignicons.css';
@@ -18,6 +20,7 @@ Vue.config.productionTip = false;
 const vue = new Vue({
   vuetify,
   router,
+  store,
   render: h => h(App),
 });
 api.setVm(vue);
