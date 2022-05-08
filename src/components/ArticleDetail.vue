@@ -3,6 +3,7 @@
     <v-col
         cols="12"
         id="title-col"
+        ref="title-col"
     >
       <v-card
           outlined
