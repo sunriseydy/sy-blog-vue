@@ -65,6 +65,10 @@ export default {
     // 设置文章ID
     this.postId = this.$route.params.id;
     this.getPostById();
+    // 获取标题高度
+    let offsetHeight = this.$refs['title-col'].offsetHeight;
+    console.log(offsetHeight);
+    this.$store.commit('updateTitleColHeight', offsetHeight);
   },
   methods: {
     getPostById() {
