@@ -13,6 +13,7 @@ export default {
   name: 'MarkDown',
   props: {
     content: String,
+    isDetail: Boolean,
   },
   data: () => ({
     md: null,
@@ -20,7 +21,7 @@ export default {
   computed: {
     html: function() {
       let res = '';
-      if (this.content) {
+      if (this.content && this.md) {
         res = this.md.render(this.content);
       }
       return res;
@@ -55,12 +56,13 @@ export default {
     });
   },
   updated() {
-    console.log('update');
-    Prism.highlightAll();
+    console.log('markdown update');
   },
   mounted() {
-    console.log('mounted');
-    Prism.highlightAll();
+    console.log('markdown mounted');
+    if (this.content) {
+      Prism.highlightAll();
+    }
   },
 };
 </script>

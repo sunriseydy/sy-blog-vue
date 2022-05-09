@@ -42,8 +42,8 @@
           class="grey darken-4"
           elevation="12"
       >
-        <v-card-text>
-          <mark-down :content="post.contentString" />
+        <v-card-text id="article-content" v-if="post.contentString">
+          <mark-down :content="post.contentString" is-detail />
         </v-card-text>
       </v-card>
     </v-col>
@@ -61,10 +61,17 @@ export default {
     post: {},
     postId: undefined,
   }),
-  mounted() {
+  created() {
+    console.log('detail created');
     // 设置文章ID
     this.postId = this.$route.params.id;
     this.getPostById();
+  },
+  mounted() {
+    console.log('detail mounted');
+  },
+  updated() {
+    console.log('detail updated');
     // 获取标题高度
     let offsetHeight = this.$refs['title-col'].offsetHeight;
     console.log(offsetHeight);
@@ -82,6 +89,7 @@ export default {
       }
       api.getPostById(this.postId).then(res => {
         this.post = res.data.data;
+        console.log('获取了文章');
       });
     },
   },
