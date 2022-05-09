@@ -65,12 +65,13 @@ export default {
     posts: [],
     nextPageBtnDisable: false,
   }),
-  mounted() {
+  created() {
     this.getPosts();
   },
   methods: {
     getPosts(page = 0) {
       this.nextPageBtnDisable = true;
+      let _posts = this.posts;
       // 获取文章
       if (page === this.totalPages) {
         this.$dialog.notify.info('已经最后一页了', {
@@ -89,8 +90,9 @@ export default {
         this.pageSize = pageSize;
         this.totalPages = totalPages;
         for (let post of content) {
-          this.posts.push(post);
+          _posts.push(post);
         }
+        this.posts = _posts;
       }).finally(() => {
         this.nextPageBtnDisable = false;
       });
