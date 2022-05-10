@@ -42,7 +42,7 @@
           class="grey darken-4"
           elevation="12"
       >
-        <v-card-text id="article-content" v-if="post.contentString">
+        <v-card-text id="article-content" ref="article-content" v-if="post.contentString">
           <mark-down :content="post.contentString" is-detail />
         </v-card-text>
       </v-card>
@@ -72,10 +72,12 @@ export default {
   },
   updated() {
     console.log('detail updated');
-    // 获取标题高度
-    let offsetHeight = this.$refs['title-col'].offsetHeight;
-    console.log(offsetHeight);
-    this.$store.commit('updateTitleColHeight', offsetHeight);
+    this.$nextTick(() => {
+      // 获取标题高度
+      let offsetHeight = this.$refs['title-col'].offsetHeight;
+      console.log(offsetHeight);
+      this.$store.commit('updateTitleColHeight', offsetHeight);
+    })
   },
   methods: {
     getPostById() {

@@ -7,7 +7,21 @@ export default new Vuex.Store({
   state: {
     toc: [],
     titleColHeight: 0,
-    activeToc: [],
+  },
+  getters: {
+    tocArray: state => {
+      let tocArray = [];
+      let getChildArray = (arr) => {
+        arr.forEach(o => {
+          tocArray.push(o.n);
+          if (o.c && o.c.length !== 0) {
+            getChildArray(o.c);
+          }
+        });
+      };
+      getChildArray(state.toc);
+      return tocArray;
+    },
   },
   mutations: {
     updateToc(state, payload) {
@@ -15,9 +29,6 @@ export default new Vuex.Store({
     },
     updateTitleColHeight(state, payload) {
       state.titleColHeight = payload || 0;
-    },
-    updateActiveToc(state, payload) {
-      state.activeToc = payload || [];
     },
   },
 });
