@@ -1,16 +1,20 @@
 <template>
-  <v-sheet
-      rounded="lg"
-      min-height="268"
-  >
-    <!--  -->
-  </v-sheet>
+  <v-row>
+    <v-col
+        cols="12"
+    >
+      <category-tree />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
+import CategoryTree from '@/components/CategoryTree';
+
 export default {
-  name: 'SideBar'
-}
+  name: 'SideBar',
+  components: {CategoryTree},
+};
 </script>
 
 <style scoped>

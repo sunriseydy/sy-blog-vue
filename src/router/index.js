@@ -27,7 +27,7 @@ const routes = [
     component: BlogArticle
   },
   {
-    path: '/category/:slug',
+    path: '/category/:fullSlug+',
     name: 'categorySlug',
     component: BlogCategory
   },

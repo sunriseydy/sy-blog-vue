@@ -7,6 +7,9 @@ export default new Vuex.Store({
   state: {
     toc: [],
     titleColHeight: 0,
+    categoryTree: [],
+    categoryFullSlug: '',
+    tagId: 0,
   },
   getters: {
     tocArray: state => {
@@ -29,6 +32,12 @@ export default new Vuex.Store({
     },
     updateTitleColHeight(state, payload) {
       state.titleColHeight = payload || 0;
+    },
+    updateCategoryTree(state, payload) {
+      state.categoryTree = payload || [];
+    },
+    updateCategoryFullSlug(state, payload) {
+      state.categoryFullSlug = payload || '';
     },
   },
 });
