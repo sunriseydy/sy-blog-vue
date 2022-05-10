@@ -60,9 +60,7 @@ export default {
   },
   mounted() {
     console.log('markdown mounted');
-    if (this.content) {
-      Prism.highlightAll();
-    }
+    this.$nextTick(() => Prism.highlightAll())
   },
 };
 </script>
