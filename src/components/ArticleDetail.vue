@@ -19,6 +19,7 @@
     </v-col>
     <v-col
         cols="12"
+        v-if="post.featuredMediaUrl"
     >
       <v-card
           outlined
@@ -27,7 +28,6 @@
           elevation="12"
       >
         <v-img
-            v-if="post.featuredMediaUrl"
             :src="post.featuredMediaUrl"
         >
         </v-img>
