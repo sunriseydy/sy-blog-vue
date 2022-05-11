@@ -8,7 +8,7 @@
       <v-card
           outlined
           rounded="lg"
-          class="grey darken-4"
+          :class="$vuetify.theme.themes.dark.main"
           elevation="12"
       >
         <v-card-title

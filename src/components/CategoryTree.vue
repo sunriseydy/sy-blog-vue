@@ -4,7 +4,8 @@
       v-model="openIndex"
   >
     <v-expansion-panel
-      v-if="categoryTree.length !== 0"
+        :class="$vuetify.theme.themes.dark.main"
+        v-if="categoryTree.length !== 0"
     >
       <v-expansion-panel-header hide-actions>分类</v-expansion-panel-header>
       <v-expansion-panel-content>
@@ -64,6 +65,7 @@ export default {
     },
   },
   created() {
+    console.log(this.$vuetify);
     if (this.categoryTree.length === 0) {
       this.getCategoryTree();
     }

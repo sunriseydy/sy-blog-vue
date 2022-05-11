@@ -13,10 +13,9 @@
           <v-card
               outlined
               rounded="lg"
-              class="grey"
               elevation="12"
               :to="{ name: 'articleId', params: { id: post.id }}"
-              :class="`darken-${hover ? 3 : 4}`"
+              :class="hover ? $vuetify.theme.themes.dark.hover : $vuetify.theme.themes.dark.main"
           >
             <v-card-title v-text="post.titleString" class="text-h3" />
             <v-img
