@@ -29,7 +29,9 @@ export default {
   },
   created() {
     let callbackFunction = (function(html, ast) {
-      this.$store.commit('updateToc', ast);
+      if (this.isDetail) {
+        this.$store.commit('updateToc', ast);
+      }
     }).bind(this);
 
     let slugify = s => encodeURI(s);
@@ -60,7 +62,7 @@ export default {
   },
   mounted() {
     console.log('markdown mounted');
-    this.$nextTick(() => Prism.highlightAll())
+    Prism.highlightAll();
   },
 };
 </script>
