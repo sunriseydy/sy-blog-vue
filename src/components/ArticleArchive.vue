@@ -58,6 +58,12 @@ import MarkDown from '@/components/MarkDown';
 export default {
   name: 'ArticleArchive',
   components: {MarkDown},
+  props: {
+    categoryId: {
+      type: Number,
+      default: 0,
+    },
+  },
   data: () => ({
     page: 0,
     pageSize: 10,
@@ -68,8 +74,18 @@ export default {
   created() {
     this.getPosts();
   },
+  updated() {
+    console.log('archive update');
+  },
+  watch: {
+    categoryId: function() {
+      this.posts = [];
+      this.getPosts();
+    },
+  },
   methods: {
     getPosts(page = 0) {
+      let apiFun;
       this.nextPageBtnDisable = true;
       let _posts = this.posts;
       // 获取文章
@@ -81,10 +97,34 @@ export default {
         this.nextPageBtnDisable = false;
         return;
       }
-      api.getPosts({
-        page,
-        pageSize: this.pageSize,
-      }).then(res => {
+
+      switch (this.$route.name) {
+        case 'home':
+          apiFun = api.getPosts({
+            page,
+            pageSize: this.pageSize,
+          });
+          break;
+        case 'categorySlug':
+          if (this.categoryId === 0) {
+            return;
+          }
+          apiFun = api.getPostsByCategory({
+            page,
+            pageSize: this.pageSize,
+            categoryId: this.categoryId,
+          });
+          break;
+        default:
+          this.$dialog.notify.warning('不支持的文章归档类型', {
+            position: 'bottom-right',
+            timeout: 3000,
+          });
+          this.nextPageBtnDisable = false;
+          return;
+      }
+
+      apiFun.then(res => {
         const {page, pageSize, totalPages, content} = res.data.data;
         this.page = page;
         this.pageSize = pageSize;
