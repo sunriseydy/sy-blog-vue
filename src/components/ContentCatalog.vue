@@ -109,6 +109,9 @@ export default {
       let tocOffsetTop = [];
       tocArray.forEach(toc => {
         let tocEle = document.getElementById(encodeURI(toc));
+        if (!tocEle) {
+          return;
+        }
         let tocTop = tocEle.offsetTop + this.contentOffsetTop - this.titleOffsetTop;
         tocOffsetTop.push({
           key: toc,
