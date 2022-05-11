@@ -3,6 +3,7 @@
       app
       flat
       absolute
+      id="app-bar"
   >
     <v-tabs
         centered

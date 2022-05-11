@@ -6,7 +6,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     toc: [],
-    titleColHeight: 0,
     categoryTree: [],
     categoryFullSlug: '',
     tagId: 0,
@@ -29,9 +28,6 @@ export default new Vuex.Store({
   mutations: {
     updateToc(state, payload) {
       state.toc = payload.c || [];
-    },
-    updateTitleColHeight(state, payload) {
-      state.titleColHeight = payload || 0;
     },
     updateCategoryTree(state, payload) {
       state.categoryTree = payload || [];

@@ -30,16 +30,14 @@ export default {
       active: [],
       latestClicked: null,
       contentOffsetTop: 0,
+      titleOffsetTop: 0,
+      appBarHeight: 0,
       tocOffsetTop: [],
-      computed: false,
     };
   },
   computed: {
     toc() {
       return this.$store.state.toc;
-    },
-    titleColHeight() {
-      return this.$store.state.titleColHeight;
     },
   },
   mounted() {
@@ -63,62 +61,20 @@ export default {
       }
       if (this.latestClicked) {
         console.log('goto:', this.latestClicked);
-        if (!this.computed) {
-          this.computeOffset();
-        }
+        this.computeOffset();
 
-        let element = document.getElementById(encodeURI(this.latestClicked));
-        let top = element.offsetTop + this.contentOffsetTop - 44;
+        let toc = this.tocOffsetTop.find(t => t.key === this.latestClicked);
+        let top = toc.offsetTop;
 
-        console.log('top:', top);
-        this.$vuetify.goTo(top);
+        console.log('goto top:', top);
+        this.$vuetify.goTo(top + this.appBarHeight);
       }
-    },
-
-    computeContentOffsetTop() {
-      let content = document.getElementById('article-content');
-      let contentOffsetTop = 0;
-      while (content.offsetParent.offsetTop !== 0) {
-        contentOffsetTop += content.offsetTop;
-        content = content.offsetParent;
-      }
-      contentOffsetTop += content.offsetTop;
-      this.contentOffsetTop = contentOffsetTop;
-    },
-
-    computeTocOffsetTop() {
-      let tocArray = this.$store.getters.tocArray;
-      let tocOffsetTop = [];
-      tocArray.forEach(toc => {
-        let tocEle = document.getElementById(encodeURI(toc));
-        let tocTop = tocEle.offsetTop + this.contentOffsetTop;
-        tocOffsetTop.push({
-          key: toc,
-          offsetTop: tocTop,
-        });
-      });
-      this.tocOffsetTop = tocOffsetTop;
-    },
-
-    computeOffset() {
-      // 先算出 article-content 距离window的offsetTop
-      this.computeContentOffsetTop();
-      console.log('contentOffsetTop:', this.contentOffsetTop);
-      // 计算 toc offsetTop
-      this.computeTocOffsetTop();
-
-      this.computed = true;
     },
 
     onScroll: function() {
-      if (!this.computed) {
-        this.computeOffset();
-      }
-      if (this.tocOffsetTop.length === 0 || !this.tocOffsetTop[0].offsetTop) {
-        this.computeOffset();
-      }
+      this.computeOffset();
 
-      let windowTop = window.scrollY + this.$store.state.titleColHeight;
+      let windowTop = window.scrollY;
       console.log('windowTop:', windowTop);
       let currentToc = null;
       this.tocOffsetTop.forEach(toc => {
@@ -132,6 +88,56 @@ export default {
       } else {
         this.active = [];
       }
+    },
+
+    computeContentOffsetTop() {
+      let content = document.getElementById('article-content');
+      let contentOffsetTop = 0;
+      if (!content) {
+        return;
+      }
+      while (content.offsetParent.offsetTop !== 0) {
+        contentOffsetTop += content.offsetTop;
+        content = content.offsetParent;
+      }
+      contentOffsetTop += content.offsetTop;
+      this.contentOffsetTop = contentOffsetTop;
+    },
+
+    computeTocOffsetTop() {
+      let tocArray = this.$store.getters.tocArray;
+      let tocOffsetTop = [];
+      tocArray.forEach(toc => {
+        let tocEle = document.getElementById(encodeURI(toc));
+        let tocTop = tocEle.offsetTop + this.contentOffsetTop - this.titleOffsetTop;
+        tocOffsetTop.push({
+          key: toc,
+          offsetTop: tocTop,
+        });
+      });
+      this.tocOffsetTop = tocOffsetTop;
+    },
+
+    computeTitleOffsetTop() {
+      let title = document.getElementById('title-col');
+      if (title) {
+        this.titleOffsetTop = title.offsetHeight
+      }
+    },
+
+    computeAppBarHeight() {
+      let appBar = document.getElementById('app-bar');
+      if (appBar) {
+        this.appBarHeight = appBar.offsetHeight;
+      }
+    },
+
+    computeOffset() {
+      // 先算出 article-content 距离window的offsetTop
+      this.computeAppBarHeight();
+      this.computeContentOffsetTop();
+      this.computeTitleOffsetTop();
+      this.computeTocOffsetTop();
     },
   },
 };

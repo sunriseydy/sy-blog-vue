@@ -72,12 +72,6 @@ export default {
   },
   updated() {
     console.log('detail updated');
-    this.$nextTick(() => {
-      // 获取标题高度
-      let offsetHeight = this.$refs['title-col'].offsetHeight;
-      console.log(offsetHeight);
-      this.$store.commit('updateTitleColHeight', offsetHeight);
-    })
   },
   methods: {
     getPostById() {
