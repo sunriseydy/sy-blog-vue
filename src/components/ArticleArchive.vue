@@ -16,6 +16,31 @@
               :to="{ name: 'articleId', params: { id: post.id }}"
               :class="hover ? $vuetify.theme.themes.dark.hover : $vuetify.theme.themes.dark.main"
           >
+            <v-card-text>
+              <v-icon>mdi-account</v-icon>
+              {{ post.authorDto.name }}
+              {{ ' | ' }}
+              <v-icon>mdi-folder-open</v-icon>
+              <span
+                  v-for="category in post.categoriesList"
+                  :key="category.id"
+                  v-text="' ' + category.name"
+              />
+              {{ ' | ' }}
+              <v-icon>mdi-tag</v-icon>
+              <span
+                  v-for="tag in post.tagsList"
+                  :key="tag.id"
+                  v-text="' ' + tag.name"
+              />
+              {{ ' | ' }}
+              <v-icon title="最后更新时间">mdi-calendar-edit</v-icon>
+              {{ post.modified }}
+              {{ ' | ' }}
+              <v-icon title="发布于">mdi-calendar-check</v-icon>
+              {{ post.date }}
+            </v-card-text>
+            <v-divider />
             <v-card-title v-text="post.titleString" class="text-h3" />
             <v-img
                 v-if="post.featuredMediaUrl"
