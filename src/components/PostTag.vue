@@ -6,7 +6,7 @@
     <v-expansion-panel
         :class="$vuetify.theme.themes.dark.main"
     >
-      <v-expansion-panel-header hide-actions>标签</v-expansion-panel-header>
+      <v-expansion-panel-header>标签</v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-chip-group
             column

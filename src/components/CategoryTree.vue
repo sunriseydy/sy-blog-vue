@@ -7,7 +7,7 @@
         :class="$vuetify.theme.themes.dark.main"
         v-if="categoryTree.length !== 0"
     >
-      <v-expansion-panel-header hide-actions>分类</v-expansion-panel-header>
+      <v-expansion-panel-header>分类</v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-treeview
             :items="categoryTree"
