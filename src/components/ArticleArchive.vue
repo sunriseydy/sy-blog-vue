@@ -68,6 +68,9 @@ export default {
     categoryId() {
       return this.$store.getters.getCategoryId;
     },
+    tagId() {
+      return this.$store.getters.tagId;
+    },
   },
   created() {
     this.posts = [];
@@ -78,6 +81,10 @@ export default {
   },
   watch: {
     categoryId: function() {
+      this.posts = [];
+      this.getPosts();
+    },
+    tagId: function() {
       this.posts = [];
       this.getPosts();
     },
@@ -112,6 +119,16 @@ export default {
             page,
             pageSize: this.pageSize,
             categoryId: this.categoryId,
+          });
+          break;
+        case 'tagSlug':
+          if (this.tagId === 0) {
+            return;
+          }
+          apiFun = api.getPostsByTag({
+            page,
+            pageSize: this.pageSize,
+            tagId: this.tagId,
           });
           break;
         default:
