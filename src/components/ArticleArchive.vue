@@ -57,12 +57,6 @@ import MarkDown from '@/components/MarkDown';
 export default {
   name: 'ArticleArchive',
   components: {MarkDown},
-  props: {
-    categoryId: {
-      type: Number,
-      default: 0,
-    },
-  },
   data: () => ({
     page: 0,
     pageSize: 10,
@@ -70,7 +64,13 @@ export default {
     posts: [],
     nextPageBtnDisable: false,
   }),
+  computed: {
+    categoryId() {
+      return this.$store.getters.getCategoryId;
+    },
+  },
   created() {
+    this.posts = [];
     this.getPosts();
   },
   updated() {

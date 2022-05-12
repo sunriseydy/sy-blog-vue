@@ -25,6 +25,32 @@ export default new Vuex.Store({
       getChildArray(state.toc);
       return tocArray;
     },
+    getCategoryArray: state => {
+      if (state.categoryTree.length === 0) {
+        return [];
+      }
+
+      let categoryArray = [];
+
+      let getChildArray = (arr) => {
+        arr.forEach(o => {
+          categoryArray.push(o);
+          if (o.children && o.children.length !== 0) {
+            getChildArray(o.children);
+          }
+        });
+      };
+      getChildArray(state.categoryTree);
+      return categoryArray;
+    },
+    getCategoryId: (state, getters) => {
+      if (state.categoryTree.length === 0 || state.categoryFullSlug === '') {
+        return 0;
+      }
+      let c = getters.getCategoryArray.find(
+          c => c.fullSlug === state.categoryFullSlug);
+      return c ? c.id : 0;
+    },
     tagId: state => {
       if (state.tags.length === 0 || state.tagSlug === '') {
         return 0;
