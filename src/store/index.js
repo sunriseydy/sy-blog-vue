@@ -8,7 +8,8 @@ export default new Vuex.Store({
     toc: [],
     categoryTree: [],
     categoryFullSlug: '',
-    tagId: 0,
+    tagSlug: '',
+    tags: [],
   },
   getters: {
     tocArray: state => {
@@ -24,6 +25,14 @@ export default new Vuex.Store({
       getChildArray(state.toc);
       return tocArray;
     },
+    tagId: state => {
+      if (state.tags.length === 0 || state.tagSlug === '') {
+        return 0;
+      } else {
+        let tag = state.tags.find(t => t.slug === state.tagSlug);
+        return tag ? tag.id : 0;
+      }
+    },
   },
   mutations: {
     updateToc(state, payload) {
@@ -34,6 +43,12 @@ export default new Vuex.Store({
     },
     updateCategoryFullSlug(state, payload) {
       state.categoryFullSlug = payload || '';
+    },
+    updateTags(state, payload) {
+      state.tags = payload || [];
+    },
+    updateTagSlug(state, payload) {
+      state.tagSlug = payload || '';
     },
   },
 });
