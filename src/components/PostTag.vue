@@ -15,6 +15,7 @@
             v-for="tag of tags"
             :key="tag.id"
             link
+            small
             :to="{ name: 'tagSlug', params: { slug: tag.slug }}"
           >
             {{tag.name}}
