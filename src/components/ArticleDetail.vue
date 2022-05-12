@@ -4,6 +4,7 @@
         cols="12"
         id="title-col"
         ref="title-col"
+        v-if="post.id"
     >
       <v-card
           outlined
@@ -11,6 +12,31 @@
           :class="$vuetify.theme.themes.dark.main"
           elevation="12"
       >
+        <v-card-text>
+          <v-icon>mdi-account</v-icon>
+          {{ post.authorDto.name }}
+          {{ ' | ' }}
+          <v-icon>mdi-folder-open</v-icon>
+          <span
+              v-for="category in post.categoriesList"
+              :key="category.id"
+              v-text="' ' + category.name"
+          />
+          {{ ' | ' }}
+          <v-icon>mdi-tag</v-icon>
+          <span
+              v-for="tag in post.tagsList"
+              :key="tag.id"
+              v-text="' ' + tag.name"
+          />
+          {{ ' | ' }}
+          <v-icon title="最后更新时间">mdi-calendar-edit</v-icon>
+          {{ post.modified }}
+          {{ ' | ' }}
+          <v-icon title="发布于">mdi-calendar-check</v-icon>
+          {{ post.date.slice(0, 10) }}
+        </v-card-text>
+        <v-divider />
         <v-card-title
             v-text="post.titleString"
             class="text-h3"

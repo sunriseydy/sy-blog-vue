@@ -38,7 +38,7 @@
               {{ post.modified }}
               {{ ' | ' }}
               <v-icon title="发布于">mdi-calendar-check</v-icon>
-              {{ post.date }}
+              {{ post.date.slice(0, 10) }}
             </v-card-text>
             <v-divider />
             <v-card-title v-text="post.titleString" class="text-h3" />
