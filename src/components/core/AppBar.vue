@@ -3,34 +3,56 @@
       app
       flat
       absolute
+      :class="$vuetify.theme.themes.dark.main"
       id="app-bar"
   >
-    <v-tabs
-        centered
-        class="ml-n9"
-    >
-      <v-tab
-          v-for="link in links"
-          :key="link"
+    <v-row>
+      <v-col
+          sm="2"
+          offset-sm="2"
       >
-        {{ link }}
-      </v-tab>
-    </v-tabs>
+        <v-list-item
+            two-line
+            @click="goTo('/')"
+        >
+          <v-list-item-content>
+            <v-list-item-title>{{ siteInfo.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ siteInfo.description }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-col>
+    </v-row>
+
   </v-app-bar>
 </template>
 
 <script>
+import api from '@/api';
+
 export default {
   name: 'AppBar',
-  data: () => ({
-    links: [
-      'Dashboard',
-      'Messages',
-      'Profile',
-      'Updates',
-    ],
-  }),
-}
+  computed: {
+    siteInfo() {
+      return this.$store.state.siteInfo;
+    },
+  },
+  created() {
+    this.getSiteInfo();
+  },
+  methods: {
+    getSiteInfo() {
+      api.getSiteInfo().then(res => {
+        this.$store.commit('updateSiteInfo', res.data.data);
+      });
+    },
+    goTo(to = '/') {
+      if (this.$route.path !== to) {
+        this.$router.push(to);
+      }
+    }
+  },
+
+};
 </script>
 
 <style scoped>

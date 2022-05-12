@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    siteInfo: {},
     toc: [],
     categoryTree: [],
     categoryFullSlug: '',
@@ -61,6 +62,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    updateSiteInfo(state, payload) {
+      state.siteInfo = payload || {};
+    },
     updateToc(state, payload) {
       state.toc = payload.c || [];
     },

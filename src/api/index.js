@@ -3,6 +3,11 @@ import qs from 'qs';
 let vm = {};
 
 export default {
+
+  getSiteInfo() {
+    return vm.$http.get('/site-info');
+  },
+
   getPosts(query) {
     return vm.$http.get('/post' + qs.stringify(query, {
       addQueryPrefix: true,

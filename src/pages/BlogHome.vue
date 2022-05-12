@@ -1,16 +1,13 @@
 <template>
   <v-row>
     <v-col
-        cols="auto"
-        sm="8"
-        offset-sm="2"
+        sm="9"
     >
       <article-archive />
     </v-col>
 
     <v-col
-        cols="auto"
-        sm="2"
+        sm="3"
     >
       <side-bar />
     </v-col>
