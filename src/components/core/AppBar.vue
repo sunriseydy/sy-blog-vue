@@ -3,6 +3,7 @@
       app
       flat
       absolute
+      class="container"
       :class="$vuetify.theme.themes.dark.main"
       id="app-bar"
   >
