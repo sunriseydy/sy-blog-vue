@@ -8,7 +8,7 @@
     <v-col
         sm="8"
     >
-      <article-detail />
+      <article-detail is-post />
     </v-col>
     <v-col
         sm="2"

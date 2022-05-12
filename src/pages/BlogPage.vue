@@ -10,7 +10,7 @@
         cols="1"
         sm="8"
     >
-      <article-detail />
+      <article-detail is-page />
     </v-col>
     <v-col
         cols="1"

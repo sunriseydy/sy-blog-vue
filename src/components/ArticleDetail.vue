@@ -57,14 +57,26 @@ import MarkDown from '@/components/MarkDown';
 export default {
   name: 'ArticleDetail',
   components: {MarkDown},
+  props: {
+    isPost: {
+      type: Boolean,
+      default: false,
+    },
+    isPage: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data: () => ({
     post: {},
     postId: undefined,
+    pageSlug: undefined,
   }),
   created() {
     console.log('detail created');
     // 设置文章ID
     this.postId = this.$route.params.id;
+    this.pageSlug = this.$route.params.slug;
     this.getPostById();
   },
   mounted() {
@@ -75,17 +87,35 @@ export default {
   },
   methods: {
     getPostById() {
-      // 获取文章
-      if (this.postId === undefined) {
-        this.$dialog.notify.info('无法获取文章ID', {
+      let apiFun;
+      if (this.isPost) {
+        if (this.postId === undefined) {
+          this.$dialog.notify.warning('文章ID不存在', {
+            position: 'bottom-right',
+            timeout: 3000,
+          });
+          return;
+        }
+        apiFun = api.getPostById(this.postId);
+      } else if (this.isPage) {
+        if (this.pageSlug === undefined) {
+          this.$dialog.notify.warning('页面slug不存在', {
+            position: 'bottom-right',
+            timeout: 3000,
+          });
+          return;
+        }
+        apiFun = api.getPageBySlug(this.pageSlug);
+      } else {
+        this.$dialog.notify.warning('内容类型不匹配，不是 post 也不是 page', {
           position: 'bottom-right',
           timeout: 3000,
         });
         return;
       }
-      api.getPostById(this.postId).then(res => {
+      apiFun.then(res => {
         this.post = res.data.data;
-        console.log('获取了文章');
+        console.log('获取了内容');
       });
     },
   },

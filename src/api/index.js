@@ -33,6 +33,12 @@ export default {
     return vm.$http.get('/tag');
   },
 
+  getPageBySlug(slug) {
+    return vm.$http.get('/page/slug' + qs.stringify({slug}, {
+      addQueryPrefix: true,
+    }));
+  },
+
   setVm(vue) {
     vm = vue;
   },
