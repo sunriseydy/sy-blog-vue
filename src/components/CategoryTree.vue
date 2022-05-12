@@ -65,7 +65,6 @@ export default {
     },
   },
   created() {
-    console.log(this.$vuetify);
     if (this.categoryTree.length === 0) {
       this.getCategoryTree();
     }
