@@ -4,7 +4,7 @@ import zhHans from 'vuetify/lib/locale/zh-Hans';
 import config from '@/config';
 
 Vue.use(Vuetify);
-
+Vuetify.config.silent = true
 export default new Vuetify({
   lang: {
     locales: {zhHans},
