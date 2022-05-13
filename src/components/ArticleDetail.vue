@@ -12,6 +12,29 @@
           elevation="12"
       >
         <v-card-text class="text-caption">
+          <span
+              v-if="!$vuetify.breakpoint.lgAndUp"
+          >
+            <v-dialog
+                attach="#title-catalog"
+                hide-overlay
+                eager
+                content-class="title-catalog-content"
+            >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                  v-bind="attrs"
+                  v-on="on"
+                  icon
+                  @click="$refs['content-catalog'].computeTitleOffsetTop()"
+              >
+                <v-icon>mdi-menu</v-icon>
+              </v-btn>
+            </template>
+            <content-catalog ref="content-catalog" />
+          </v-dialog>
+          {{ ' | ' }}
+          </span>
           <v-icon>mdi-folder-open</v-icon>
           <span
               v-for="category in post.categoriesList"
@@ -39,6 +62,11 @@
         />
       </v-card>
     </v-col>
+    <v-col
+        cols="12"
+        id="title-catalog"
+        :style="{top: titleOffsetTop - 24 + 'px'}"
+    />
     <v-col
         cols="12"
         v-if="post.featuredMediaUrl"
@@ -75,10 +103,11 @@
 <script>
 import api from '@/api';
 import MarkDown from '@/components/MarkDown';
+import ContentCatalog from '@/components/ContentCatalog';
 
 export default {
   name: 'ArticleDetail',
-  components: {MarkDown},
+  components: {ContentCatalog, MarkDown},
   props: {
     isPost: {
       type: Boolean,
@@ -94,6 +123,11 @@ export default {
     postId: undefined,
     pageSlug: undefined,
   }),
+  computed: {
+    titleOffsetTop() {
+      return this.$store.state.titleOffsetTop;
+    },
+  },
   created() {
     console.log('detail created');
     // 设置文章ID
@@ -144,10 +178,31 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #title-col {
   position: sticky;
   top: -12px;
   z-index: 1;
+}
+
+#title-catalog {
+  position: fixed;
+  padding: 0 0 0 12px;
+  z-index: 100;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+}
+
+#title-catalog .v-dialog__content {
+  align-items: unset;
+  justify-content: unset;
+  position: unset;
+}
+
+#title-catalog .title-catalog-content {
+  margin: 0;
 }
 </style>

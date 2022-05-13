@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     siteInfo: {},
     toc: [],
+    titleOffsetTop: 0,
     categoryTree: [],
     categoryFullSlug: '',
     tagSlug: '',
@@ -79,6 +80,9 @@ export default new Vuex.Store({
     },
     updateTagSlug(state, payload) {
       state.tagSlug = payload || '';
+    },
+    updateTitleOffsetTop(state, payload) {
+      state.titleOffsetTop = payload || 0;
     },
   },
 });

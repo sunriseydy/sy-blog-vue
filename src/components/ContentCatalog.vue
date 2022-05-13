@@ -127,6 +127,7 @@ export default {
       let title = document.getElementById('title-col');
       if (title) {
         this.titleOffsetTop = title.offsetHeight
+        this.$store.commit('updateTitleOffsetTop', this.titleOffsetTop);
       }
     },
 
@@ -149,7 +150,7 @@ export default {
 </script>
 
 <style>
-.toc-card {
+:not(.title-catalog-content) > .toc-card {
   position: sticky;
   top: 0;
   z-index: 1;
