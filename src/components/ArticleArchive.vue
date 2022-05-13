@@ -13,7 +13,7 @@
               outlined
               rounded="lg"
               elevation="12"
-              :to="{ name: 'articleId', params: { id: post.id }}"
+              :to="'/article/' + getPostLink(post)"
               :class="hover ? $vuetify.theme.themes.dark.hover : $vuetify.theme.themes.dark.main"
           >
             <v-card-text>
@@ -73,6 +73,7 @@
 <script>
 import api from '@/api';
 import MarkDown from '@/components/MarkDown';
+import config from '@/config';
 
 export default {
   name: 'ArticleArchive',
@@ -176,6 +177,21 @@ export default {
     getNextPagePosts() {
       this.getPosts(this.page + 1);
     },
+    getPostLink(post) {
+      let postLink = config.postLink;
+      switch (postLink) {
+        case 'slug':
+          return post.slug;
+        case 'id':
+          return post.id;
+        default:
+          this.$dialog.notify.warning('不支持的文章链接类型', {
+            position: 'bottom-right',
+            timeout: 3000,
+          });
+          return;
+      }
+    }
   },
 };
 </script>

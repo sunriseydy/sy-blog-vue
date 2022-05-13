@@ -18,6 +18,12 @@ export default {
     return vm.$http.get(`/post/${id}`);
   },
 
+  getPostBySlug(slug) {
+    return vm.$http.get('/post/slug' + qs.stringify({slug}, {
+      addQueryPrefix: true,
+    }));
+  },
+
   getPostsByCategory(query) {
     return vm.$http.get('/post/category' + qs.stringify(query, {
       addQueryPrefix: true,

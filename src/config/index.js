@@ -3,4 +3,5 @@ export default {
   apiHost: process.env.VUE_APP_API_HOST || 'http://192.168.31.59:8080',
   mainColorClass: 'grey darken-4',
   hoverColorClass: 'grey darken-3',
+  postLink: process.env.VUE_APP_POST_LINK || 'slug',
 };

@@ -128,6 +128,7 @@ export default {
   data: () => ({
     post: {},
     postId: undefined,
+    postSlug: undefined,
     pageSlug: undefined,
   }),
   computed: {
@@ -140,7 +141,8 @@ export default {
     // 设置文章ID
     this.postId = this.$route.params.id;
     this.pageSlug = this.$route.params.slug;
-    this.getPostById();
+    this.postSlug = this.$route.params.slug;
+    this.getPost();
   },
   mounted() {
     console.log('detail mounted');
@@ -149,17 +151,20 @@ export default {
     console.log('detail updated');
   },
   methods: {
-    getPostById() {
+    getPost() {
       let apiFun;
       if (this.isPost) {
-        if (this.postId === undefined) {
-          this.$dialog.notify.warning('文章ID不存在', {
+        if (this.postId !== undefined) {
+          apiFun = api.getPostById(this.postId);
+        } else if (this.postSlug !== undefined) {
+          apiFun = api.getPostBySlug(this.postSlug.replaceAll(/.*\//g, ''));
+        } else {
+          this.$dialog.notify.warning('文章标识不存在', {
             position: 'bottom-right',
             timeout: 3000,
           });
           return;
         }
-        apiFun = api.getPostById(this.postId);
       } else if (this.isPage) {
         if (this.pageSlug === undefined) {
           this.$dialog.notify.warning('页面slug不存在', {
