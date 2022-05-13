@@ -70,7 +70,8 @@
         id="title-catalog"
         :style="{
                   top: titleOffsetTop - 24 + 'px',
-                  maxHeight: $vuetify.breakpoint.height * 0.5 + 'px'
+                  maxHeight: $vuetify.breakpoint.height * 0.5 + 'px',
+                  maxWidth: $vuetify.breakpoint.width * 0.9 + 'px',
                 }"
     />
     <v-col
@@ -200,7 +201,6 @@ export default {
   left: auto;
   width: auto;
   height: auto;
-  max-width: 90%;
 }
 
 #title-catalog .v-dialog__content {
