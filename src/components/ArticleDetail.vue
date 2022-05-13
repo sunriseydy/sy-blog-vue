@@ -61,7 +61,7 @@
         <v-divider />
         <v-card-title
             v-text="post.titleString"
-            class="text-h6 text-lg-h3"
+            class="text-h5 text-lg-h3"
         />
       </v-card>
     </v-col>

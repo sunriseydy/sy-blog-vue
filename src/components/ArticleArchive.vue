@@ -38,7 +38,7 @@
               {{ post.date.slice(0, 10) }}
             </v-card-text>
             <v-divider />
-            <v-card-title v-text="post.titleString" class="text-h3" />
+            <v-card-title v-text="post.titleString" class="text-h5 text-lg-h3" />
             <v-img
                 v-if="post.featuredMediaUrl"
                 :src="post.featuredMediaUrl"
