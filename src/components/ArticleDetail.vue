@@ -11,49 +11,52 @@
           :class="$vuetify.theme.themes.dark.main"
           elevation="12"
       >
-        <v-card-text class="text-caption">
-          <span
-              v-if="!$vuetify.breakpoint.lgAndUp"
-          >
-            <v-dialog
-                attach="#title-catalog"
-                hide-overlay
-                eager
-                content-class="title-catalog-content"
-            >
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                  v-bind="attrs"
-                  v-on="on"
-                  icon
-                  @click="$refs['content-catalog'].computeTitleOffsetTop()"
-              >
-                <v-icon>mdi-menu</v-icon>
-              </v-btn>
-            </template>
-            <content-catalog ref="content-catalog" />
-          </v-dialog>
-          {{ ' | ' }}
-          </span>
-          <v-icon>mdi-folder-open</v-icon>
-          <span
-              v-for="category in post.categoriesList"
-              :key="category.id"
-              v-text="' ' + category.name"
-          />
-          {{ ' | ' }}
-          <v-icon>mdi-tag</v-icon>
-          <span
-              v-for="tag in post.tagsList"
-              :key="tag.id"
-              v-text="' ' + tag.name"
-          />
-          {{ ' | ' }}
-          <v-icon title="最后更新时间">mdi-calendar-edit</v-icon>
-          {{ post.modified }}
-          {{ ' | ' }}
-          <v-icon title="发布于">mdi-calendar-check</v-icon>
-          {{ post.date.slice(0, 10) }}
+        <v-card-text class="text-caption pa-1">
+          <v-row no-gutters>
+            <v-col>
+              <span v-if="!$vuetify.breakpoint.lgAndUp">
+                <v-dialog
+                    attach="#title-catalog"
+                    hide-overlay
+                    eager
+                    scrollable
+                    content-class="title-catalog-content"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                        v-bind="attrs"
+                        v-on="on"
+                        icon
+                        @click="$refs['content-catalog'].computeTitleOffsetTop()"
+                    >
+                      <v-icon>mdi-menu</v-icon>
+                    </v-btn>
+                  </template>
+                  <content-catalog ref="content-catalog" />
+                </v-dialog>
+                <span>{{ ' | ' }}</span>
+              </span>
+              <v-icon>mdi-folder-open</v-icon>
+              <span
+                  v-for="category in post.categoriesList"
+                  :key="category.id"
+                  v-text="' ' + category.name"
+              />
+              {{ ' | ' }}
+              <v-icon>mdi-tag</v-icon>
+              <span
+                  v-for="tag in post.tagsList"
+                  :key="tag.id"
+                  v-text="' ' + tag.name"
+              />
+              {{ ' | ' }}
+              <v-icon title="最后更新时间">mdi-calendar-edit</v-icon>
+              {{ post.modified }}
+              {{ ' | ' }}
+              <v-icon title="发布于">mdi-calendar-check</v-icon>
+              {{ post.date.slice(0, 10) }}
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-divider />
         <v-card-title
@@ -193,7 +196,9 @@ export default {
   bottom: auto;
   left: auto;
   width: auto;
-  height: auto;
+  height: fill;
+  max-width: 80%;
+  max-height: 70%;
 }
 
 #title-catalog .v-dialog__content {
