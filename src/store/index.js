@@ -12,6 +12,7 @@ export default new Vuex.Store({
     categoryFullSlug: '',
     tagSlug: '',
     tags: [],
+    showDrawer: false,
   },
   getters: {
     tocArray: state => {
@@ -83,6 +84,9 @@ export default new Vuex.Store({
     },
     updateTitleOffsetTop(state, payload) {
       state.titleOffsetTop = payload || 0;
+    },
+    toggleDrawer(state, payload) {
+      state.showDrawer = payload || false;
     },
   },
 });

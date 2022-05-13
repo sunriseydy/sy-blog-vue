@@ -4,12 +4,14 @@
       flat
       absolute
       class="container"
+      clipped-right
       :class="$vuetify.theme.themes.dark.main"
       id="app-bar"
   >
     <div class="container">
       <v-row>
         <v-col
+            cols="10"
             lg="2"
         >
           <v-list-item
@@ -21,6 +23,13 @@
               <v-list-item-subtitle>{{ siteInfo.description }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
+        </v-col>
+        <v-col
+            cols="2"
+            class="text-end"
+            v-if="!$vuetify.breakpoint.lgAndUp"
+        >
+          <v-app-bar-nav-icon @click="$store.commit('toggleDrawer', !$store.state.showDrawer)" />
         </v-col>
       </v-row>
     </div>
@@ -50,7 +59,7 @@ export default {
       if (this.$route.path !== to) {
         this.$router.push(to);
       }
-    }
+    },
   },
 
 };
@@ -60,6 +69,7 @@ export default {
 #app-bar {
   padding: 0 !important;
 }
+
 #app-bar .v-toolbar__content {
   padding: 0 !important;
 }

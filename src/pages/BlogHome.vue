@@ -8,6 +8,7 @@
 
     <v-col
         lg="3"
+        v-if="$vuetify.breakpoint.lgAndUp"
     >
       <side-bar />
     </v-col>
