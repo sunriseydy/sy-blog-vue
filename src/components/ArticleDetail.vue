@@ -54,7 +54,7 @@
               {{ post.modified }}
               {{ ' | ' }}
               <v-icon title="发布于">mdi-calendar-check</v-icon>
-              {{ post.date.slice(0, 10) }}
+              {{ post.date ? post.date.slice(0, 10) : '' }}
             </v-col>
           </v-row>
         </v-card-text>
