@@ -17,6 +17,7 @@
         open-all
         activatable
         hoverable
+        class="overflow-x-auto"
         v-on:update:active="activeUpdated"
         :active="active"
     />
@@ -147,10 +148,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .toc-card {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.toc-card .v-treeview-node__label {
+  white-space: pre-line;
 }
 </style>

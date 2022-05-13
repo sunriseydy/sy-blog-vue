@@ -1,17 +1,18 @@
 <template>
   <v-row>
     <v-col
-        sm="2"
+        lg="2"
+        v-if="$vuetify.breakpoint.lgAndUp"
     >
       <content-catalog />
     </v-col>
     <v-col
-        sm="8"
+        lg="8"
     >
       <article-detail is-post />
     </v-col>
     <v-col
-        sm="2"
+        lg="2"
     >
       <side-bar />
     </v-col>

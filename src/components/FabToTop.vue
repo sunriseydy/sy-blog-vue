@@ -3,12 +3,11 @@
     <v-btn
         v-show="fab"
         v-scroll="onScroll"
-        bottom
         class="transition-swing"
         fab
         fixed
-        large
         right
+        bottom
         style="z-index: 6"
         @click="toTop"
     >

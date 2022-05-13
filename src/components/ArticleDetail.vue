@@ -4,7 +4,6 @@
         cols="12"
         id="title-col"
         ref="title-col"
-        v-if="post.id"
     >
       <v-card
           outlined
@@ -12,10 +11,7 @@
           :class="$vuetify.theme.themes.dark.main"
           elevation="12"
       >
-        <v-card-text>
-          <v-icon>mdi-account</v-icon>
-          {{ post.authorDto.name }}
-          {{ ' | ' }}
+        <v-card-text class="text-caption">
           <v-icon>mdi-folder-open</v-icon>
           <span
               v-for="category in post.categoriesList"
@@ -39,7 +35,7 @@
         <v-divider />
         <v-card-title
             v-text="post.titleString"
-            class="text-h3"
+            class="text-h6 text-lg-h3"
         />
       </v-card>
     </v-col>

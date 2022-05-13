@@ -17,9 +17,6 @@
               :class="hover ? $vuetify.theme.themes.dark.hover : $vuetify.theme.themes.dark.main"
           >
             <v-card-text>
-              <v-icon>mdi-account</v-icon>
-              {{ post.authorDto.name }}
-              {{ ' | ' }}
               <v-icon>mdi-folder-open</v-icon>
               <span
                   v-for="category in post.categoriesList"
@@ -45,7 +42,7 @@
             <v-img
                 v-if="post.featuredMediaUrl"
                 :src="post.featuredMediaUrl"
-                height="400px"
+                max-height="400px"
                 class="ma-4"
                 contain
             >
@@ -59,16 +56,15 @@
 
     </v-col>
     <v-col
-        cols="1"
+        cols="auto"
         v-if="posts.length !== 0"
     >
       <v-btn
-          small
           fab
           :disabled="nextPageBtnDisable"
           @click="getNextPagePosts"
       >
-        <v-icon>mdi-chevron-down</v-icon>
+        <v-icon>mdi-chevron-double-down</v-icon>
       </v-btn>
     </v-col>
   </v-row>

@@ -10,7 +10,7 @@
     <div class="container">
       <v-row>
         <v-col
-            sm="2"
+            lg="2"
         >
           <v-list-item
               two-line

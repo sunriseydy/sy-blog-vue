@@ -72,6 +72,10 @@ export default {
   background-color: unset !important;
 }
 
+.markdown-body :not(pre)+code {
+  overflow-wrap: break-word;
+}
+
 .octicon-link {
   visibility: hidden;
   fill: currentColor;

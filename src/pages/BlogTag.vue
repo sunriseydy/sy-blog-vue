@@ -1,12 +1,12 @@
 <template>
   <v-row>
     <v-col
-        sm="9"
+        lg="9"
     >
       <article-archive />
     </v-col>
     <v-col
-        sm="3"
+        lg="3"
     >
       <side-bar />
     </v-col>
