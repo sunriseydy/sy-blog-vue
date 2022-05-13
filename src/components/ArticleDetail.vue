@@ -68,7 +68,10 @@
     <v-col
         cols="12"
         id="title-catalog"
-        :style="{top: titleOffsetTop - 24 + 'px'}"
+        :style="{
+                  top: titleOffsetTop - 24 + 'px',
+                  maxHeight: $vuetify.breakpoint.height * 0.5 + 'px'
+                }"
     />
     <v-col
         cols="12"
@@ -196,15 +199,16 @@ export default {
   bottom: auto;
   left: auto;
   width: auto;
-  height: fill;
-  max-width: 80%;
-  max-height: 70%;
+  height: auto;
+  max-width: 90%;
 }
 
 #title-catalog .v-dialog__content {
   align-items: unset;
   justify-content: unset;
   position: unset;
+  max-height: inherit;
+  max-width: inherit;
 }
 
 #title-catalog .title-catalog-content {
