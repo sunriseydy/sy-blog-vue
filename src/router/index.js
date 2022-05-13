@@ -7,6 +7,7 @@ import BlogDateArchive from '@/pages/BlogDateArchive';
 import BlogTag from '@/pages/BlogTag';
 import BlogUser from '@/pages/BlogUser';
 import BlogPage from '@/pages/BlogPage';
+import goTo from 'vuetify/lib/services/goto';
 
 Vue.use(Router)
 
@@ -60,5 +61,14 @@ const routes = [
 
 export default new Router({
   mode: 'history',
-  routes
+  routes,
+  scrollBehavior: (to) => {
+    let scrollTo = 0
+
+    if (to.hash) {
+      scrollTo = to.hash
+    }
+
+    return goTo(scrollTo)
+  },
 })
