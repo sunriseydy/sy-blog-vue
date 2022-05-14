@@ -54,6 +54,10 @@ export default new Vuex.Store({
           c => c.fullSlug === state.categoryFullSlug);
       return c ? c.id : 0;
     },
+    getCategory: (state, getters) => {
+      let id = getters.getCategoryId;
+      return id === 0 ? {} : getters.getCategoryArray.find(c => c.id === id);
+    },
     tagId: state => {
       if (state.tags.length === 0 || state.tagSlug === '') {
         return 0;
@@ -62,6 +66,10 @@ export default new Vuex.Store({
         return tag ? tag.id : 0;
       }
     },
+    tag: (state, getters) => {
+      let id = getters.tagId;
+      return id === 0 ? {} : state.tags.find(t => t.id === id);
+    }
   },
   mutations: {
     updateSiteInfo(state, payload) {
