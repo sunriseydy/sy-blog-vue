@@ -3,9 +3,35 @@
       justify="center"
   >
     <v-col
-      cols="12"
-      v-show="posts.length === 0"
+        cols="12"
+        v-show="loading"
+    >
+      <v-dialog
+          v-model="loading"
+          persistent
+          width="300"
       >
+        <v-card
+            :color="$vuetify.theme.themes.dark.main"
+            class="pa-1"
+            height="50"
+        >
+          <v-card-text
+              class="pa-1"
+          >
+            加载中
+          </v-card-text>
+          <v-progress-linear
+              indeterminate
+              rounded
+          ></v-progress-linear>
+        </v-card>
+      </v-dialog>
+    </v-col>
+    <v-col
+        cols="12"
+        v-show="posts.length === 0"
+    >
       <v-card
           outlined
           rounded="lg"
@@ -13,7 +39,7 @@
           :class="$vuetify.theme.themes.dark.main"
       >
         <v-banner
-          shaped
+            shaped
         >
           没有文章
         </v-banner>
@@ -78,7 +104,7 @@
     >
       <v-btn
           fab
-          :disabled="nextPageBtnDisable"
+          :disabled="loading"
           @click="getNextPagePosts"
       >
         <v-icon>mdi-chevron-double-down</v-icon>
@@ -100,7 +126,7 @@ export default {
     pageSize: 10,
     totalPages: 1,
     posts: [],
-    nextPageBtnDisable: false,
+    loading: false,
   }),
   computed: {
     categoryId() {
@@ -130,7 +156,7 @@ export default {
   methods: {
     getPosts(page = 0) {
       let apiFun;
-      this.nextPageBtnDisable = true;
+      this.loading = true;
       let _posts = this.posts;
       // 获取文章
       if (page === this.totalPages) {
@@ -138,7 +164,7 @@ export default {
           position: 'bottom-right',
           timeout: 3000,
         });
-        this.nextPageBtnDisable = false;
+        this.loading = false;
         return;
       }
 
@@ -174,7 +200,7 @@ export default {
             position: 'bottom-right',
             timeout: 3000,
           });
-          this.nextPageBtnDisable = false;
+          this.loading = false;
           return;
       }
 
@@ -188,7 +214,7 @@ export default {
         }
         this.posts = _posts;
       }).finally(() => {
-        this.nextPageBtnDisable = false;
+        this.loading = false;
       });
     },
     getNextPagePosts() {
@@ -208,7 +234,7 @@ export default {
           });
           return;
       }
-    }
+    },
   },
 };
 </script>

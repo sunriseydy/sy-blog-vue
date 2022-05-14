@@ -2,6 +2,32 @@
   <v-row>
     <v-col
         cols="12"
+        v-show="loading"
+    >
+      <v-dialog
+          v-model="loading"
+          persistent
+          width="300"
+      >
+        <v-card
+            :color="$vuetify.theme.themes.dark.main"
+            class="pa-1"
+            height="50"
+        >
+          <v-card-text
+              class="pa-1"
+          >
+            加载中
+          </v-card-text>
+          <v-progress-linear
+              indeterminate
+              rounded
+          ></v-progress-linear>
+        </v-card>
+      </v-dialog>
+    </v-col>
+    <v-col
+        cols="12"
         id="title-col"
         ref="title-col"
     >
@@ -126,6 +152,7 @@ export default {
     },
   },
   data: () => ({
+    loading: false,
     post: {},
     postId: undefined,
     postSlug: undefined,
@@ -152,6 +179,7 @@ export default {
   },
   methods: {
     getPost() {
+      this.loading = true;
       let apiFun;
       if (this.isPost) {
         if (this.postId !== undefined) {
@@ -163,6 +191,7 @@ export default {
             position: 'bottom-right',
             timeout: 3000,
           });
+          this.loading = false;
           return;
         }
       } else if (this.isPage) {
@@ -171,6 +200,7 @@ export default {
             position: 'bottom-right',
             timeout: 3000,
           });
+          this.loading = false;
           return;
         }
         apiFun = api.getPageBySlug(this.pageSlug);
@@ -179,12 +209,13 @@ export default {
           position: 'bottom-right',
           timeout: 3000,
         });
+        this.loading = false;
         return;
       }
       apiFun.then(res => {
         this.post = res.data.data;
         console.log('获取了内容');
-      });
+      }).finally(() => this.loading = false);
     },
   },
 };
