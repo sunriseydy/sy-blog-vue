@@ -3,6 +3,23 @@
       justify="center"
   >
     <v-col
+      cols="12"
+      v-show="posts.length === 0"
+      >
+      <v-card
+          outlined
+          rounded="lg"
+          elevation="12"
+          :class="$vuetify.theme.themes.dark.main"
+      >
+        <v-banner
+          shaped
+        >
+          没有文章
+        </v-banner>
+      </v-card>
+    </v-col>
+    <v-col
         v-for="post in posts"
         :key="post.id"
         cols="12"
