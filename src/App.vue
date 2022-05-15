@@ -12,9 +12,13 @@ import AppBar from '@/components/core/AppBar';
 import AppContent from '@/components/core/AppContent';
 import FabToTop from '@/components/FabToTop';
 import AppDrawer from '@/components/core/AppDrawer';
+import config from '@/config';
 
 export default {
   components: {AppDrawer, FabToTop, AppContent, AppBar},
+  beforeCreate() {
+    document.title = config.title;
+  }
 };
 
 </script>
