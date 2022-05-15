@@ -9,6 +9,7 @@
       <v-expansion-panel-header>分类</v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-treeview
+            v-if="categoryTree.length !== 0"
             :items="categoryTree"
             item-children="children"
             item-key="fullSlug"
