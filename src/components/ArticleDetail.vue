@@ -182,6 +182,9 @@ export default {
   methods: {
     getPost() {
       this.loading = true;
+      // 清空目录
+      this.$store.commit('updateToc', []);
+
       let apiFun;
       if (this.isPost) {
         if (this.postId !== undefined) {
