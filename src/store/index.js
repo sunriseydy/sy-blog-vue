@@ -17,7 +17,7 @@ export default new Vuex.Store({
     page: 0,
     pageSize: 10,
     totalPages: 1,
-    archiveType: '',
+    archivePath: '',
   },
   getters: {
     tocArray: state => {
@@ -104,8 +104,8 @@ export default new Vuex.Store({
     updatePosts(state, payload) {
       state.posts = payload || [];
     },
-    updateArchiveType: (state, payload) => {
-      state.archiveType = payload || '';
+    updateArchivePath: (state, payload) => {
+      state.archivePath = payload || '';
     },
     updatePage: (state, payload) => {
       state.page = payload || 0;

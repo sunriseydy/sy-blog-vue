@@ -133,12 +133,12 @@ export default {
         this.$store.commit('updatePosts', value);
       },
     },
-    archiveType: {
+    archivePath: {
       get() {
-        return this.$store.state.archiveType;
+        return this.$store.state.archivePath;
       },
       set(value) {
-        this.$store.commit('updateArchiveType', value);
+        this.$store.commit('updateArchivePath', value);
       },
     },
     page: {
@@ -187,7 +187,7 @@ export default {
   methods: {
     getPosts(page = 0) {
       // 处理文章缓存
-      if (page === 0 && this.archiveType === this.$route.name && this.posts.length !== 0) {
+      if (page === 0 && this.archivePath === this.$route.path && this.posts.length !== 0) {
         return;
       }
       if (page === 0) {
@@ -253,7 +253,7 @@ export default {
         this.posts = _posts;
       }).finally(() => {
         this.loading = false;
-        this.archiveType = this.$route.name;
+        this.archivePath = this.$route.path;
       });
     },
     getNextPagePosts() {
