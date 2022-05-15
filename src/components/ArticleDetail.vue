@@ -30,6 +30,7 @@
         cols="12"
         id="title-col"
         ref="title-col"
+        v-if="post.titleString"
     >
       <v-card
           outlined
@@ -118,6 +119,7 @@
     </v-col>
     <v-col
         cols="12"
+        v-if="post.contentString"
     >
       <v-card
           outlined
