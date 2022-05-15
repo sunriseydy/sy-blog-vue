@@ -13,6 +13,11 @@ export default new Vuex.Store({
     tagSlug: '',
     tags: [],
     showDrawer: false,
+    posts: [],
+    page: 0,
+    pageSize: 10,
+    totalPages: 1,
+    archiveType: '',
   },
   getters: {
     tocArray: state => {
@@ -69,7 +74,7 @@ export default new Vuex.Store({
     tag: (state, getters) => {
       let id = getters.tagId;
       return id === 0 ? {} : state.tags.find(t => t.id === id);
-    }
+    },
   },
   mutations: {
     updateSiteInfo(state, payload) {
@@ -95,6 +100,21 @@ export default new Vuex.Store({
     },
     toggleDrawer(state, payload) {
       state.showDrawer = payload || false;
+    },
+    updatePosts(state, payload) {
+      state.posts = payload || [];
+    },
+    updateArchiveType: (state, payload) => {
+      state.archiveType = payload || '';
+    },
+    updatePage: (state, payload) => {
+      state.page = payload || 0;
+    },
+    updatePageSize: (state, payload) => {
+      state.pageSize = payload || 10;
+    },
+    updateTotalPages: (state, payload) => {
+      state.totalPages = payload || 1;
     },
   },
 });

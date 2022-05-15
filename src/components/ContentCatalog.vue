@@ -42,15 +42,8 @@ export default {
       return this.$store.state.toc;
     },
   },
-  mounted() {
-    console.log('catalog mounted');
-  },
-  updated() {
-    console.log('catalog updated');
-  },
   methods: {
     activeUpdated(arr) {
-      console.log('active change:', arr, this.latestClicked, this.active);
       if (arr.length === 0) {
         return;
       }
@@ -62,13 +55,11 @@ export default {
         this.latestClicked = arr[0];
       }
       if (this.latestClicked) {
-        console.log('goto:', this.latestClicked);
         this.computeOffset();
 
         let toc = this.tocOffsetTop.find(t => t.key === this.latestClicked);
         let top = toc.offsetTop;
 
-        console.log('goto top:', top);
         this.$vuetify.goTo(top + this.appBarHeight);
       }
     },
@@ -77,10 +68,8 @@ export default {
       this.computeOffset();
 
       let windowTop = window.scrollY;
-      console.log('windowTop:', windowTop);
       let currentToc = null;
       this.tocOffsetTop.forEach(toc => {
-        console.log(toc.key, toc.offsetTop);
         if (toc.offsetTop && toc.offsetTop <= windowTop) {
           currentToc = toc.key;
         }

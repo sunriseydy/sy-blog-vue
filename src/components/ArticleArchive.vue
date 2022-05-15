@@ -122,13 +122,49 @@ export default {
   name: 'ArticleArchive',
   components: {MarkDown},
   data: () => ({
-    page: 0,
-    pageSize: 10,
-    totalPages: 1,
-    posts: [],
     loading: false,
   }),
   computed: {
+    posts: {
+      get() {
+        return this.$store.state.posts;
+      },
+      set(value) {
+        this.$store.commit('updatePosts', value);
+      },
+    },
+    archiveType: {
+      get() {
+        return this.$store.state.archiveType;
+      },
+      set(value) {
+        this.$store.commit('updateArchiveType', value);
+      },
+    },
+    page: {
+      get() {
+        return this.$store.state.page;
+      },
+      set(value) {
+        this.$store.commit('updatePage', value);
+      },
+    },
+    pageSize: {
+      get() {
+        return this.$store.state.pageSize;
+      },
+      set(value) {
+        this.$store.commit('updatePageSize', value);
+      },
+    },
+    totalPages: {
+      get() {
+        return this.$store.state.totalPages;
+      },
+      set(value) {
+        this.$store.commit('updateTotalPages', value);
+      },
+    },
     categoryId() {
       return this.$store.getters.getCategoryId;
     },
@@ -137,24 +173,26 @@ export default {
     },
   },
   created() {
-    this.posts = [];
+    console.log('archive created');
     this.getPosts();
-  },
-  updated() {
-    console.log('archive update');
   },
   watch: {
     categoryId: function() {
-      this.posts = [];
       this.getPosts();
     },
     tagId: function() {
-      this.posts = [];
       this.getPosts();
     },
   },
   methods: {
     getPosts(page = 0) {
+      // 处理文章缓存
+      if (page === 0 && this.archiveType === this.$route.name && this.posts.length !== 0) {
+        return;
+      }
+      if (page === 0) {
+        this.posts = [];
+      }
       let apiFun;
       this.loading = true;
       let _posts = this.posts;
@@ -215,6 +253,7 @@ export default {
         this.posts = _posts;
       }).finally(() => {
         this.loading = false;
+        this.archiveType = this.$route.name;
       });
     },
     getNextPagePosts() {
