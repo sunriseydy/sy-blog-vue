@@ -58,10 +58,8 @@ export default {
     });
   },
   updated() {
-    console.log('markdown update');
   },
   mounted() {
-    console.log('markdown mounted');
     Prism.highlightAll();
   },
 };

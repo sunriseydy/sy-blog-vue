@@ -45,7 +45,6 @@ export default {
     getCategoryTree() {
       api.getCategoryTree().then((res) => {
         this.$store.commit('updateCategoryTree', res.data.data);
-        console.log('获取了分类树');
       });
     },
 

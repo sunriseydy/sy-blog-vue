@@ -173,12 +173,6 @@ export default {
     this.postSlug = this.$route.params.slug;
     this.getPost();
   },
-  mounted() {
-    console.log('detail mounted');
-  },
-  updated() {
-    console.log('detail updated');
-  },
   methods: {
     getPost() {
       this.loading = true;
@@ -219,7 +213,6 @@ export default {
       }
       apiFun.then(res => {
         this.post = res.data.data;
-        console.log('获取了内容');
       }).finally(() => this.loading = false);
     },
   },
