@@ -9,7 +9,10 @@
       id="app-bar"
   >
     <div class="container">
-      <v-row>
+      <v-row
+        align="center"
+        justify="center"
+      >
         <v-col
             cols="10"
             lg="2"
