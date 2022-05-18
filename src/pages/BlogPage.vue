@@ -23,7 +23,7 @@
 <script>
 import ContentCatalog from '@/components/ContentCatalog';
 import ArticleDetail from '@/components/ArticleDetail';
-import SideBar from '@/components/SideBar';
+import SideBar from '@/layouts/SideBar';
 
 export default {
   name: 'BlogPage',

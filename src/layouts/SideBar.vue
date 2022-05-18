@@ -1,6 +1,11 @@
 <template>
   <v-row>
     <v-col
+      cols="12"
+    >
+      <default-search />
+    </v-col>
+    <v-col
         cols="12"
         md="6"
         lg="12"
@@ -20,10 +25,11 @@
 <script>
 import CategoryTree from '@/components/CategoryTree';
 import PostTag from '@/components/PostTag';
+import DefaultSearch from '@/components/Search';
 
 export default {
   name: 'SideBar',
-  components: {PostTag, CategoryTree},
+  components: {DefaultSearch, PostTag, CategoryTree},
 };
 </script>
 

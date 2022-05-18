@@ -17,7 +17,7 @@
 
 <script>
 import ArticleArchive from "@/components/ArticleArchive";
-import SideBar from "@/components/SideBar";
+import SideBar from "@/layouts/SideBar";
 export default {
   name: 'BlogHome',
   components: {SideBar, ArticleArchive}

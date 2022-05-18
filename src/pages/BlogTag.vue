@@ -33,7 +33,7 @@
 
 <script>
 import ArticleArchive from '@/components/ArticleArchive';
-import SideBar from '@/components/SideBar';
+import SideBar from '@/layouts/SideBar';
 export default {
   name: 'BlogTag',
   components: {SideBar, ArticleArchive},
