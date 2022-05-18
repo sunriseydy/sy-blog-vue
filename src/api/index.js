@@ -36,6 +36,12 @@ export default {
     }));
   },
 
+  searchPosts(query) {
+    return vm.$http.get('/post/search' + qs.stringify(query, {
+      addQueryPrefix: true,
+    }));
+  },
+
   getCategoryTree() {
     return vm.$http.get('/category/tree');
   },

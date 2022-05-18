@@ -171,6 +171,9 @@ export default {
     tagId() {
       return this.$store.getters.tagId;
     },
+    searchString() {
+      return this.$route.query.search;
+    },
   },
   created() {
     console.log('archive created');
@@ -183,11 +186,14 @@ export default {
     tagId: function() {
       this.getPosts();
     },
+    searchString: function() {
+      this.getPosts();
+    },
   },
   methods: {
     getPosts(page = 0) {
       // 处理文章缓存
-      if (page === 0 && this.archivePath === this.$route.path && this.posts.length !== 0) {
+      if (page === 0 && this.archivePath === this.$route.fullPath && this.posts.length !== 0) {
         return;
       }
       if (page === 0) {
@@ -215,6 +221,7 @@ export default {
           break;
         case 'categorySlug':
           if (this.categoryId === 0) {
+            this.loading = false;
             return;
           }
           apiFun = api.getPostsByCategory({
@@ -225,12 +232,24 @@ export default {
           break;
         case 'tagSlug':
           if (this.tagId === 0) {
+            this.loading = false;
             return;
           }
           apiFun = api.getPostsByTag({
             page,
             pageSize: this.pageSize,
             tagId: this.tagId,
+          });
+          break;
+        case 'search':
+          if (!this.searchString || this.searchString === '') {
+            this.loading = false;
+            return;
+          }
+          apiFun = api.searchPosts({
+            page,
+            pageSize: this.pageSize,
+            search: this.searchString,
           });
           break;
         default:
@@ -253,7 +272,7 @@ export default {
         this.posts = _posts;
       }).finally(() => {
         this.loading = false;
-        this.archivePath = this.$route.path;
+        this.archivePath = this.$route.fullPath;
       });
     },
     getNextPagePosts() {

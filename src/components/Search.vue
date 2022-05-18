@@ -27,10 +27,15 @@ export default {
       if (this.searchString === '') {
         return;
       }
-      if (this.$store.state.searchString === this.searchString) {
+      if (this.$route.name === 'search' && this.$route.query.search === this.searchString) {
         return;
       }
-      this.$store.commit('updateSearchString', this.searchString);
+      this.$router.push({
+        name: 'search',
+        query: {
+          search: this.searchString,
+        },
+      });
     },
   },
 };
