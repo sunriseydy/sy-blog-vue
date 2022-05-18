@@ -11,7 +11,6 @@
     <div class="container">
       <v-row
         align="center"
-        justify="center"
       >
         <v-col
             cols="10"
