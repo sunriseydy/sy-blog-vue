@@ -41,7 +41,7 @@
         <v-card-text class="text-caption pa-1">
           <v-row no-gutters>
             <v-col>
-              <span v-if="!$vuetify.breakpoint.lgAndUp">
+              <span v-if="!$vuetify.breakpoint.lgAndUp && hasToc">
                 <v-dialog
                     attach="#title-catalog"
                     hide-overlay
@@ -167,6 +167,9 @@ export default {
   computed: {
     titleOffsetTop() {
       return this.$store.state.titleOffsetTop;
+    },
+    hasToc() {
+      return this.$store.state.toc.length !== 0;
     },
   },
   created() {
