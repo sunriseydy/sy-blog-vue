@@ -63,20 +63,24 @@
                 </v-dialog>
                 <span>{{ ' | ' }}</span>
               </span>
-              <v-icon>mdi-folder-open</v-icon>
-              <span
-                  v-for="category in post.categoriesList"
-                  :key="category.id"
-                  v-text="' ' + category.name"
-              />
-              {{ ' | ' }}
-              <v-icon>mdi-tag</v-icon>
-              <span
-                  v-for="tag in post.tagsList"
-                  :key="tag.id"
-                  v-text="' ' + tag.name"
-              />
-              {{ ' | ' }}
+              <span v-if="post.categoriesList">
+                <v-icon>mdi-folder-open</v-icon>
+                <span
+                    v-for="category in post.categoriesList"
+                    :key="category.id"
+                    v-text="' ' + category.name"
+                />
+                {{ ' | ' }}
+              </span>
+              <span v-if="post.tagsList">
+                <v-icon>mdi-tag</v-icon>
+                <span
+                    v-for="tag in post.tagsList"
+                    :key="tag.id"
+                    v-text="' ' + tag.name"
+                />
+                {{ ' | ' }}
+              </span>
               <v-icon title="最后更新时间">mdi-calendar-edit</v-icon>
               {{ post.modified }}
               {{ ' | ' }}
