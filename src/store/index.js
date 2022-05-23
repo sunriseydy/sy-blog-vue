@@ -18,6 +18,7 @@ export default new Vuex.Store({
     pageSize: 10,
     totalPages: 1,
     archivePath: '',
+    pageSlug: '',
   },
   getters: {
     tocArray: state => {
@@ -115,6 +116,9 @@ export default new Vuex.Store({
     },
     updateTotalPages: (state, payload) => {
       state.totalPages = payload || 1;
-    }
+    },
+    updatePageSlug: (state, payload) => {
+      state.pageSlug = payload || '';
+    },
   },
 });

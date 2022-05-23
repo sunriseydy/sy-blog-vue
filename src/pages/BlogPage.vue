@@ -33,6 +33,14 @@ export default {
       return this.$store.state.toc.length !== 0;
     },
   },
+  watch: {
+    '$route': function() {
+      this.$store.commit('updatePageSlug', this.$route.params.slug);
+    },
+  },
+  created() {
+    this.$store.commit('updatePageSlug', this.$route.params.slug);
+  }
 }
 </script>
 

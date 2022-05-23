@@ -162,7 +162,6 @@ export default {
     post: {},
     postId: undefined,
     postSlug: undefined,
-    pageSlug: undefined,
   }),
   computed: {
     titleOffsetTop() {
@@ -171,14 +170,23 @@ export default {
     hasToc() {
       return this.$store.state.toc.length !== 0;
     },
+    pageSlug() {
+      return this.$store.state.pageSlug;
+    },
   },
   created() {
     console.log('detail created');
     // 设置文章ID
     this.postId = this.$route.params.id;
-    this.pageSlug = this.$route.params.slug;
     this.postSlug = this.$route.params.slug;
     this.getPost();
+  },
+  watch: {
+    pageSlug() {
+      if (this.isPage) {
+        this.getPost();
+      }
+    },
   },
   methods: {
     getPost() {
@@ -201,7 +209,7 @@ export default {
           return;
         }
       } else if (this.isPage) {
-        if (this.pageSlug === undefined) {
+        if (this.pageSlug === '') {
           this.$dialog.notify.warning('页面slug不存在', {
             position: 'bottom-right',
             timeout: 3000,
