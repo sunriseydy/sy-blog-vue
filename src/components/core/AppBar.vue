@@ -27,6 +27,11 @@
           </v-list-item>
         </v-col>
         <v-col
+            v-if="$vuetify.breakpoint.lgAndUp"
+        >
+          <default-menu />
+        </v-col>
+        <v-col
             cols="2"
             class="text-end"
             v-if="!$vuetify.breakpoint.lgAndUp"
@@ -40,9 +45,11 @@
 
 <script>
 import api from '@/api';
+import DefaultMenu from '@/components/Menu';
 
 export default {
   name: 'AppBar',
+  components: {DefaultMenu},
   computed: {
     siteInfo() {
       return this.$store.state.siteInfo;

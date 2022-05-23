@@ -4,4 +4,18 @@ export default {
   mainColorClass: 'grey darken-4',
   hoverColorClass: 'grey darken-3',
   postLink: process.env.VUE_APP_POST_LINK || 'slug',
+  menus: [
+    {
+      name: '关于',
+      path: '/about',
+      target: null,
+      attrTitle: '关于我和此站点',
+    },
+    {
+      name: '其他',
+      path: '/others',
+      target: null,
+      attrTitle: '其他',
+    },
+  ],
 };
